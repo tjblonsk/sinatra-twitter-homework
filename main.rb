@@ -38,18 +38,34 @@ configure do
   end
 end
 
+
 get '/tweets/:username' do
   # This gets the username from the params hash
   @username = params[:username]
+
+
 
   # This queries Twitter's API and asks for the most recent Tweets from a user
   # The tweets are stored in an Array called @my_tweets
   @my_tweets = Twitter.user_timeline(@username)
 
   # The following 3 lines will output the text from each tweet from a user
-  @my_tweets.each do |tweet|
-    tweet[:text]
-  end
+  # Move this to tweets.erb?
+
 
   erb :tweets
 end
+
+get '/form' do
+  @username = params[:username]
+  if @username
+    redirect to("/tweets/#{@username}")
+  else
+    puts "Enter a valid username"
+  end
+  erb :form
+end
+
+
+
+

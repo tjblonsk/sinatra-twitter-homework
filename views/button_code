@@ -1,0 +1,6 @@
+<form action="/tweets/:username" method="get">
+  <input type="text" name="username">
+  <button>GO</button>
+</form>
+
+<%= @my_tweets %>
